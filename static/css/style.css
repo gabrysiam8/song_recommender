@@ -1,0 +1,60 @@
+body {
+  font-family: 'PT Sans', sans-serif;
+  grid-gap: 10px;
+  grid-template-columns: 15% 70% 15%;
+  grid-template-rows: 8% 11% 70% 11%;
+  background: url("/static/images/bg.jpeg") fixed;
+}
+
+.NavBar {
+  background-color: rgba(204, 197, 188, 0.8);
+  padding: 1em;
+}
+
+.NavBar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  font-size: 22px;
+  text-transform: uppercase;
+}
+
+.NavBar ul:nth-child(3) {
+    float: right;
+}
+
+li {
+    display: inline-block;
+    width: 200px;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px 0;
+    text-decoration:none;
+}
+
+li:hover {
+    color: white;
+    cursor: pointer;
+}
+
+#searchWrapper img {
+    vertical-align: middle;
+}
+
+#searchWrapper input {
+    width: 125px;
+}
+
+#searchImage {
+    width: 20px;
+}
+
+.PageTitle {
+  grid-area: grid;
+  grid-area: 2/2/3/4;
+}
+
+.Moods {
+  grid-area: 3/2;
+  background-color: aquamarine;
+}
