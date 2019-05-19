@@ -91,6 +91,14 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '',
     }
+    'heroku': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'song_recommender',
+        'USER': 'postgres',
+        'PASSWORD': 'passw0rd',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
 }
 
 
