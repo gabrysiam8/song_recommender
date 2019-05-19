@@ -1,4 +1,6 @@
 Django==2.2.1
+gunicorn
+django-heroku
 numpy==1.16.3
 pandas==0.24.2
 psycopg2==2.8.2
