@@ -11,7 +11,6 @@ def index(request):
          WHERE rank.RowNo<=5
     """
 '''
-    mood_names = ['1', '2']
-    # mood_names = [m.name for m in Mood.objects.raw(sql)]
-    # print('mood_names')
+    mood_names = [m.name for m in Mood.objects.raw(sql)]
+    print('mood_names')
     return render(request, 'index.html', {'moods': mood_names})
