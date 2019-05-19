@@ -91,7 +91,7 @@ DATABASES = {
         'PASSWORD': 'passw0rd',
         'HOST': 'localhost',
         'PORT': '',
-    }
+    },
     'heroku': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'd7l8fs5rp4ka9s',
