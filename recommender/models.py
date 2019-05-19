@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
 
 
 class Song(models.Model):
@@ -6,3 +7,8 @@ class Song(models.Model):
     title = models.TextField()
     link = models.TextField()
     text = models.TextField()
+
+
+class Mood(models.Model):
+    name = models.TextField()
+    categories = ArrayField(models.TextField())
