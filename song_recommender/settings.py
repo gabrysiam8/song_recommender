@@ -94,10 +94,10 @@ DATABASES = {
     }
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'song_recommender',
-        'USER': 'postgres',
-        'PASSWORD': 'passw0rd',
-        'HOST': 'localhost',
+        'NAME': 'd7l8fs5rp4ka9s',
+        'USER': 'oorvyhetzmebbg',
+        'PASSWORD': '5e89d90da075e8dfff5ac3fe227eefcc7e8f21feaa90fb05f0d8cb283ab36b0a',
+        'HOST': 'ec2-54-221-198-156.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
