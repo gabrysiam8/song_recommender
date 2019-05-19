@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'song_recommender.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    'local': {
+    'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'song_recommender',
         'USER': 'postgres',
@@ -92,7 +92,7 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '',
     }
-    'default': {
+    'heroku': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'd7l8fs5rp4ka9s',
         'USER': 'oorvyhetzmebbg',
