@@ -27,8 +27,7 @@ SECRET_KEY = '*7t$j!8gn=+y_lkn-8hr@0u3f*e_)k7s2*+!kgkl-!-55+haq-'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-'mood-2-song.herokuapp.com',
-'.amazonaws.com'
+'mood-2-song.herokuapp.com'
 ]
 
 STATICFILES_DIRS = [
@@ -84,21 +83,13 @@ WSGI_APPLICATION = 'song_recommender.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    'local': {
+    'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'song_recommender',
         'USER': 'postgres',
         'PASSWORD': 'passw0rd',
         'HOST': 'localhost',
         'PORT': '',
-    }
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'song_recommender',
-        'USER': 'oorvyhetzmebbg',
-        'PASSWORD': '5e89d90da075e8dfff5ac3fe227eefcc7e8f21feaa90fb05f0d8cb283ab36b0a',
-        'HOST': 'ec2-54-221-198-156.compute-1.amazonaws.com',
-        'PORT': '5432',
     }
 }
 
