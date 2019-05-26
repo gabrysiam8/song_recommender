@@ -1,37 +1,138 @@
 {% load static %}
 
-<!doctype html>
+<!DOCTYPE html>
 
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Song Recommender</title>
-  <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet"> 
-</head>
-    
-<body>
-  <nav>
-    <div class="NavBar">
-      <ul>
-        <li>About</li>
-        <li>Authors</li>
-        <li>
-          <div id=searchWrapper>
-              <input id="searchInput" type="text" placeholder="Search for a mood">
-              <img id="searchImage" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgogIDxnPgogICAgPHBhdGggZD0iTTQ5NSw0NjYuMkwzNzcuMiwzNDguNGMyOS4yLTM1LjYsNDYuOC04MS4yLDQ2LjgtMTMwLjlDNDI0LDEwMy41LDMzMS41LDExLDIxNy41LDExQzEwMy40LDExLDExLDEwMy41LDExLDIxNy41ICAgUzEwMy40LDQyNCwyMTcuNSw0MjRjNDkuNywwLDk1LjItMTcuNSwxMzAuOC00Ni43TDQ2Ni4xLDQ5NWM4LDgsMjAuOSw4LDI4LjksMEM1MDMsNDg3LjEsNTAzLDQ3NC4xLDQ5NSw0NjYuMnogTTIxNy41LDM4Mi45ICAgQzEyNi4yLDM4Mi45LDUyLDMwOC43LDUyLDIxNy41UzEyNi4yLDUyLDIxNy41LDUyQzMwOC43LDUyLDM4MywxMjYuMywzODMsMjE3LjVTMzA4LjcsMzgyLjksMjE3LjUsMzgyLjl6IiBmaWxsPSIjMDAwMDAwIi8+CiAgPC9nPgo8L3N2Zz4K" alt="search"/>
-          </div>
-        </li>
-      </ul>
+  <head>
+    <meta charset="utf-8" />
+    <title>Song Recommender</title>
+    <link
+      href="{% static 'css/style.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=PT+Sans"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Cabin+Sketch&display=swap"
+      rel="stylesheet"
+    />
+    <script src="{% static 'js/app.js' %}" type="text/javascript"></script>
+  </head>
+
+  <body>
+    <div class="gridContainer">
+      <div class="navBar">
+        <div class="left">
+          <img
+            class="logo"
+            src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8Zz4KCTxnPgoJCTxwYXRoIGQ9Ik0yNTYsMzFDMTE1LjM5LDMxLDAsMTQ1LjM5LDAsMjg2djEyMGMwLDI0LjgxNCwyMC4xODYsNDUsNDUsNDVoMTVWMzAxSDQ1Yy01LjI4NCwwLTEwLjI4NSwxLjA4Mi0xNSwyLjc2M1YyODYgICAgQzMwLDE2MS45MjgsMTMxLjkyOCw2MSwyNTYsNjFzMjI2LDEwMC45MjgsMjI2LDIyNXYxNy43NjNjLTQuNzE1LTEuNjgxLTkuNzE2LTIuNzYzLTE1LTIuNzYzaC0xNXYxNTBoMTUgICAgYzI0LjgxNCwwLDQ1LTIwLjE4Niw0NS00NVYyODZDNTEyLDE0NS4zOSwzOTYuNjEsMzEsMjU2LDMxeiIgZmlsbD0iIzAwMDAwMCIvPgoJPC9nPgo8L2c+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTEzNSwyNzFoLTE1Yy0xNi41NjksMC0zMCwxMy40MzEtMzAsMzB2MTUwYzAsMTYuNTY5LDEzLjQzMSwzMCwzMCwzMGgxNWM4LjI4NCwwLDE1LTYuNzE2LDE1LTE1VjI4NiAgICBDMTUwLDI3Ny43MTYsMTQzLjI4NCwyNzEsMTM1LDI3MXoiIGZpbGw9IiMwMDAwMDAiLz4KCTwvZz4KPC9nPgo8Zz4KCTxnPgoJCTxwYXRoIGQ9Ik0zOTIsMjcxaC0xNWMtOC4yODQsMC0xNSw2LjcxNi0xNSwxNXYxODBjMCw4LjI4NCw2LjcxNiwxNSwxNSwxNWgxNWMxNi41NjksMCwzMC0xMy40MzEsMzAtMzBWMzAxICAgIEM0MjIsMjg0LjQzMSw0MDguNTY5LDI3MSwzOTIsMjcxeiIgZmlsbD0iIzAwMDAwMCIvPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo="
+            alter="logo"
+          />
+        </div>
+
+        <div class="middle">
+          <a class="menu">About</a>
+          <a class="menu">Authors</a>
+          <a class="menu">
+            <form id="searchInput" type="text"></form>
+            <select>
+              <option value="" disabled selected>Select your mood</option>
+              <option>Angry</option>
+              <option>Happy</option>
+            </select>
+          </a>
+        </div>
+
+        <div class="right">
+          <img
+            class="fb"
+            src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIDAgNDkuNjUyIDQ5LjY1MiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDkuNjUyIDQ5LjY1MjsiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8Zz4KCTxnPgoJCTxwYXRoIGQ9Ik0yNC44MjYsMEMxMS4xMzcsMCwwLDExLjEzNywwLDI0LjgyNmMwLDEzLjY4OCwxMS4xMzcsMjQuODI2LDI0LjgyNiwyNC44MjZjMTMuNjg4LDAsMjQuODI2LTExLjEzOCwyNC44MjYtMjQuODI2ICAgIEM0OS42NTIsMTEuMTM3LDM4LjUxNiwwLDI0LjgyNiwweiBNMzEsMjUuN2gtNC4wMzljMCw2LjQ1MywwLDE0LjM5NiwwLDE0LjM5NmgtNS45ODVjMCwwLDAtNy44NjYsMC0xNC4zOTZoLTIuODQ1di01LjA4OGgyLjg0NSAgICB2LTMuMjkxYzAtMi4zNTcsMS4xMi02LjA0LDYuMDQtNi4wNGw0LjQzNSwwLjAxN3Y0LjkzOWMwLDAtMi42OTUsMC0zLjIxOSwwYy0wLjUyNCwwLTEuMjY5LDAuMjYyLTEuMjY5LDEuMzg2djIuOTloNC41NkwzMSwyNS43eiAgICAiIGZpbGw9IiMwMDAwMDAiLz4KCTwvZz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K"
+            alter="fb"
+          />
+          <img
+            class="ig"
+            src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIDAgNDkuNjUyIDQ5LjY1MiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDkuNjUyIDQ5LjY1MjsiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8Zz4KCTxnPgoJCTxnPgoJCQk8cGF0aCBkPSJNMjQuODI1LDI5Ljc5NmMyLjczOSwwLDQuOTcyLTIuMjI5LDQuOTcyLTQuOTdjMC0xLjA4Mi0wLjM1NC0yLjA4MS0wLjk0LTIuODk3Yy0wLjkwMy0xLjI1Mi0yLjM3MS0yLjA3My00LjAyOS0yLjA3MyAgICAgYy0xLjY1OSwwLTMuMTI2LDAuODItNC4wMzEsMi4wNzJjLTAuNTg4LDAuODE2LTAuOTM5LDEuODE1LTAuOTQsMi44OTdDMTkuODU0LDI3LjU2NiwyMi4wODUsMjkuNzk2LDI0LjgyNSwyOS43OTZ6IiBmaWxsPSIjMDAwMDAwIi8+CgkJCTxwb2x5Z29uIHBvaW50cz0iMzUuNjc4LDE4Ljc0NiAzNS42NzgsMTQuNTggMzUuNjc4LDEzLjk2IDM1LjA1NSwxMy45NjIgMzAuODkxLDEzLjk3NSAzMC45MDcsMTguNzYyICAgICIgZmlsbD0iIzAwMDAwMCIvPgoJCQk8cGF0aCBkPSJNMjQuODI2LDBDMTEuMTM3LDAsMCwxMS4xMzcsMCwyNC44MjZjMCwxMy42ODgsMTEuMTM3LDI0LjgyNiwyNC44MjYsMjQuODI2YzEzLjY4OCwwLDI0LjgyNi0xMS4xMzgsMjQuODI2LTI0LjgyNiAgICAgQzQ5LjY1MiwxMS4xMzcsMzguNTE2LDAsMjQuODI2LDB6IE0zOC45NDUsMjEuOTI5djExLjU2YzAsMy4wMTEtMi40NDgsNS40NTgtNS40NTcsNS40NThIMTYuMTY0ICAgICBjLTMuMDEsMC01LjQ1Ny0yLjQ0Ny01LjQ1Ny01LjQ1OHYtMTEuNTZ2LTUuNzY0YzAtMy4wMSwyLjQ0Ny01LjQ1Nyw1LjQ1Ny01LjQ1N2gxNy4zMjNjMy4wMSwwLDUuNDU4LDIuNDQ3LDUuNDU4LDUuNDU3VjIxLjkyOXoiIGZpbGw9IiMwMDAwMDAiLz4KCQkJPHBhdGggZD0iTTMyLjU0OSwyNC44MjZjMCw0LjI1Ny0zLjQ2NCw3LjcyMy03LjcyMyw3LjcyM2MtNC4yNTksMC03LjcyMi0zLjQ2Ni03LjcyMi03LjcyM2MwLTEuMDI0LDAuMjA0LTIuMDAzLDAuNTY4LTIuODk3ICAgICBoLTQuMjE1djExLjU2YzAsMS40OTQsMS4yMTMsMi43MDQsMi43MDYsMi43MDRoMTcuMzIzYzEuNDkxLDAsMi43MDYtMS4yMSwyLjcwNi0yLjcwNHYtMTEuNTZoLTQuMjE3ICAgICBDMzIuMzQyLDIyLjgyMywzMi41NDksMjMuODAyLDMyLjU0OSwyNC44MjZ6IiBmaWxsPSIjMDAwMDAwIi8+CgkJPC9nPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo="
+            alter="ig"
+          />
+          <img
+            class="share"
+            src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDU5IDU5IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1OSA1OTsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSI1MTJweCIgaGVpZ2h0PSI1MTJweCI+CjxwYXRoIGQ9Ik00NywzOWMtMi42NzEsMC01LjE4MiwxLjA0LTcuMDcxLDIuOTI5Yy0wLjUyNCwwLjUyNC0wLjk3NSwxLjEtMS4zNjUsMS43MDlsLTE3LjI4LTEwLjQ4OSAgQzIxLjc0MSwzMi4wMDUsMjIsMzAuNzYxLDIyLDI5LjQ1NmMwLTEuMzA1LTAuMjU5LTIuNTQ5LTAuNzE1LTMuNjkzbDE3LjI4NC0xMC40MDlDNDAuMzQ1LDE4LjE0Miw0My40NTYsMjAsNDcsMjAgIGM1LjUxNCwwLDEwLTQuNDg2LDEwLTEwUzUyLjUxNCwwLDQ3LDBTMzcsNC40ODYsMzcsMTBjMCwxLjI1NiwwLjI0MywyLjQ1NCwwLjY2NywzLjU2MkwyMC4zNjEsMjMuOTg1ICBjLTEuNzg4LTIuNzI0LTQuODY2LTQuNTI5LTguMzYxLTQuNTI5Yy01LjUxNCwwLTEwLDQuNDg2LTEwLDEwczQuNDg2LDEwLDEwLDEwYzMuNDk1LDAsNi41NzItMS44MDUsOC4zNi00LjUyOUwzNy42NjQsNDUuNDMgIEMzNy4yMzQsNDYuNTU2LDM3LDQ3Ljc1OSwzNyw0OWMwLDIuNjcxLDEuMDQsNS4xODMsMi45MjksNy4wNzFDNDEuODE4LDU3Ljk2LDQ0LjMyOSw1OSw0Nyw1OXM1LjE4Mi0xLjA0LDcuMDcxLTIuOTI5ICBDNTUuOTYsNTQuMTgzLDU3LDUxLjY3MSw1Nyw0OXMtMS4wNC01LjE4My0yLjkyOS03LjA3MUM1Mi4xODIsNDAuMDQsNDkuNjcxLDM5LDQ3LDM5eiIgZmlsbD0iIzAwMDAwMCIvPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K"
+            alter="share"
+          />
+        </div>
+      </div>
+
+      <div class="title">
+        <a class="titleText">Your perfect music match</a>
+      </div>
+
+      <div class="moods">
+        <ul class="listOfMoods" id="list">
+          <li>Broken-hearted</li>
+          <li>Mad</li>
+          <li>Annoyed</li>
+          <li>Exhausted</li>
+          <li>Over the moon</li>
+          <li>Tired</li>
+          <li>Miserable</li>
+          <li>Sad</li>
+          <li>Happy</li>
+          <li>Mood1</li>
+          <li>Mood1</li>
+          <li>Mood1</li>
+          <li>Miserable</li>
+          <li>Sad</li>
+          <li>Happy</li>
+          <li>Mood1</li>
+          <li>Mood1</li>
+          <li>Mood1</li>
+          <li>Miserable</li>
+          <li>Sad</li>
+          <li>Happy</li>
+          <li>Mood1</li>
+          <li>Mood1</li>
+          <li>Mood1</li>
+          <li>Miserable</li>
+          <li>Sad</li>
+          <li>Happy</li>
+          <li>Mood1</li>
+          <li>Mood1</li>
+          <li>Mood1</li>
+          <li>Broken-hearted</li>
+          <li>Mad</li>
+          <li>Annoyed</li>
+          <li>Exhausted</li>
+          <li>Over the moon</li>
+          <li>Tired</li>
+          <li>Miserable</li>
+          <li>Broken-hearted</li>
+          <li>Mad</li>
+          <li>Annoyed</li>
+          <li>Exhausted</li>
+          <li>Over the moon</li>
+          <li>Tired</li>
+          <li>Miserable</li>
+          <li>Broken-hearted</li>
+          <li>Mad</li>
+          <li>Annoyed</li>
+          <li>Exhausted</li>
+          <li>Over the moon</li>
+          <li>Tired</li>
+          <li>Miserable</li>
+          <li>Broken-hearted</li>
+          <li>Mad</li>
+          <li>Annoyed</li>
+          <li>Exhausted</li>
+          <li>Over the moon</li>
+          <li>Tired</li>
+          <li>Miserable</li>
+        </ul>
+        <a class="submit">Check your songs!</a>
+      </div>
     </div>
 
-    <div class="PageTitle">
-
-    </div>
-
-    <div class="Moods">
-
-    </div>
-  </nav>
-</body>
+  </body>
 </html>
