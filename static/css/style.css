@@ -22,12 +22,18 @@ body {
   align-items: center;
 }
 
-.navBar a:hover {
+#nav1:hover, #nav2:hover {
   color: white;
   cursor: pointer;
   -webkit-transform: scale(1.3);
         -ms-transform: scale(1.3);
         transform: scale(1.3);
+}
+
+#nav3:hover {
+  color: white;
+  cursor: pointer;
+  transition-duration: 0.2s;
 }
 
 .left, .middle, .right {
@@ -167,4 +173,8 @@ body {
   margin: 5% auto 0;
   background: #fff;
   z-index: 9999;
+}
+
+.moodsInput {
+  width: 140px;
 }
