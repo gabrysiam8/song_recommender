@@ -71,64 +71,9 @@
 
       <div class="moods">
         <ul class="listOfMoods" id="list">
-          <li>Broken-hearted</li>
-          <li>Mad</li>
-          <li>Annoyed</li>
-          <li>Exhausted</li>
-          <li>Over the moon</li>
-          <li>Tired</li>
-          <li>Miserable</li>
-          <li>Sad</li>
-          <li>Happy</li>
-          <li>Mood1</li>
-          <li>Mood1</li>
-          <li>Mood1</li>
-          <li>Miserable</li>
-          <li>Sad</li>
-          <li>Happy</li>
-          <li>Mood1</li>
-          <li>Mood1</li>
-          <li>Mood1</li>
-          <li>Miserable</li>
-          <li>Sad</li>
-          <li>Happy</li>
-          <li>Mood1</li>
-          <li>Mood1</li>
-          <li>Mood1</li>
-          <li>Miserable</li>
-          <li>Sad</li>
-          <li>Happy</li>
-          <li>Mood1</li>
-          <li>Mood1</li>
-          <li>Mood1</li>
-          <li>Broken-hearted</li>
-          <li>Mad</li>
-          <li>Annoyed</li>
-          <li>Exhausted</li>
-          <li>Over the moon</li>
-          <li>Tired</li>
-          <li>Miserable</li>
-          <li>Broken-hearted</li>
-          <li>Mad</li>
-          <li>Annoyed</li>
-          <li>Exhausted</li>
-          <li>Over the moon</li>
-          <li>Tired</li>
-          <li>Miserable</li>
-          <li>Broken-hearted</li>
-          <li>Mad</li>
-          <li>Annoyed</li>
-          <li>Exhausted</li>
-          <li>Over the moon</li>
-          <li>Tired</li>
-          <li>Miserable</li>
-          <li>Broken-hearted</li>
-          <li>Mad</li>
-          <li>Annoyed</li>
-          <li>Exhausted</li>
-          <li>Over the moon</li>
-          <li>Tired</li>
-          <li>Miserable</li>
+          {% for mood in moods %}
+              <li>{{ mood }}</li>
+          {% endfor %}    
         </ul>
         <a class="submit">Check your songs!</a>
       </div>
