@@ -19,7 +19,6 @@
       href="https://fonts.googleapis.com/css?family=Cabin+Sketch&display=swap"
       rel="stylesheet"
     />
-    <script src="{% static 'js/app.js' %}" type="text/javascript"></script>
   </head>
 
   <body>
@@ -34,7 +33,7 @@
         </div>
 
         <div class="middle">
-          <a class="menu">About</a>
+          <a class="menu" id="aboutButton">About</a>
           <a class="menu">Authors</a>
           <a class="menu">
             <form id="searchInput" type="text"></form>
@@ -79,5 +78,13 @@
       </div>
     </div>
 
+    <div class="modal">
+      <div class="modal-content">
+          <span class="close-button">&times;</span>
+          <h1>Hello, I am a modal!</h1>
+      </div>
+  </div>
+
+  <script src="{% static 'js/app.js' %}" type="text/javascript"></script>
   </body>
 </html>
