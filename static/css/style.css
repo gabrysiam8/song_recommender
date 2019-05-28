@@ -110,26 +110,25 @@ body {
   transition-duration: 0.2s;
 }
 
-.moods ul li:active {
+.moods ul li:focus {
   border: 2px solid white;
-  color: white;
+  color: red;
   cursor: pointer;
-  transition-duration: 0.2s;
 }
 
 .submit {
-  width: 200px;
+  width: 300px;
   height: 34px;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  border-radius: 30px;
+  border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   text-align: center;
   padding: 10px;
-  font-size: 20px;
-  border: 2px solid black;
+  font-size: 30px;
+  font-family: 'Cabin Sketch', cursive;
 }
 
 .submit:hover {

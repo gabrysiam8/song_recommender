@@ -46,7 +46,7 @@
           <a class="menu">
             <label for="moods"></label>
             <input id="moods" class="moodsInput" placeholder="Search for the mood">
-            <i class="fas fa-search" id="nav3"></i>
+            <i class="fas fa-search" id="nav3" onclick="addChosenWords()"></i>
           </a>
         </div>
 
@@ -76,7 +76,7 @@
       <div class="moods">
         <ul class="listOfMoods" id="list">
           {% for mood in moods %}
-              <li>{{ mood }}</li>
+              <li onclick="changeStyleOfSelectedMoods()">{{ mood }}</li>
           {% endfor %}    
         </ul>
         <a class="submit">Check your songs!</a>

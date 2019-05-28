@@ -15,3 +15,18 @@ function windowOnClick(event) {
 trigger.addEventListener("click", toggleModal);
 closeButton.addEventListener("click", toggleModal);
 window.addEventListener("click", windowOnClick);
+
+function changeStyleOfSelectedMoods() {
+    let li = document.querySelectorAll('.listOfMoods li');
+
+}
+
+function addChosenWords() {
+    let word = document.querySelector('.moodsInput').value;
+    console.log(word);
+
+    var el = document.getElementById("list");
+    var node = document.createElement("li");
+    node.innerText = word;
+    el.appendChild(node);
+}
