@@ -1,13 +1,15 @@
 import sys, os
 import pandas as pd
-import random
+import string
+from nltk.corpus import stopwords
+from textblob import Word
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'song_recommender.settings')
 
 import django
 django.setup()
 
-from recommender.models import Song
+
 
 if __name__ == "__main__":
 
@@ -19,8 +21,16 @@ if __name__ == "__main__":
     filepath_train = 'data/traindata.csv'
     filepath_valid = 'data/validdata.csv'
 
+
     train = songs_ds.head(1000)
-    # print(train)
+    lyrics = train.loc[:, 'text']
+    stop = stopwords.words('english')
+    lyrics = lyrics.apply(lambda x: ' '.join(x.lower() for x in x.split()))
+    lyrics = lyrics.apply(lambda x: ' '.join(x for x in x.split() if x not in string.punctuation))
+    lyrics = lyrics.str.replace('[^\w\s]', '')
+    lyrics = lyrics.apply(lambda x: ' '.join(x for x in x.split() if not x.isdigit()))
+    lyrics = lyrics.apply(lambda x: ' '.join(x for x in x.split() if not x in stop))
+    lyrics = lyrics.apply(lambda x: " ".join([Word(word).lemmatize() for word in x.split()]))
 
     valid = songs_ds.tail(200)
     # print(valid)
