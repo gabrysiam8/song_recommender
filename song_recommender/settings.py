@@ -86,6 +86,7 @@ WSGI_APPLICATION = 'song_recommender.wsgi.application'
 DATABASES = {
     'local': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+<<<<<<< HEAD
         'NAME': 'song_recommender',
         'USER': 'postgres',
         'PASSWORD': 'passw0rd',
@@ -94,11 +95,17 @@ DATABASES = {
     },
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+=======
+>>>>>>> d089cceae20523321f5fac9227047965d0ae7b30
         'NAME': 'd7l8fs5rp4ka9s',
         'USER': 'oorvyhetzmebbg',
         'PASSWORD': '5e89d90da075e8dfff5ac3fe227eefcc7e8f21feaa90fb05f0d8cb283ab36b0a',
         'HOST': 'ec2-54-221-198-156.compute-1.amazonaws.com',
         'PORT': '5432',
+<<<<<<< HEAD
+=======
+        'OPTIONS': {'sslmode': 'require'},
+>>>>>>> d089cceae20523321f5fac9227047965d0ae7b30
     }
 }
 
