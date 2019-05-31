@@ -1,10 +1,7 @@
 Django==2.2.1
-<<<<<<< HEAD
 gunicorn
 django-heroku
-=======
 nltk==3.4.1
->>>>>>> d089cceae20523321f5fac9227047965d0ae7b30
 numpy==1.16.3
 pandas==0.24.2
 psycopg2==2.8.2
