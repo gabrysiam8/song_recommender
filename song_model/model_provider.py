@@ -6,7 +6,7 @@ logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=lo
 songs = []
 
 # read csv
-with open('songdata.csv') as csvfile:
+with open('../data/songdata.csv') as csvfile:
    readCSV = csv.reader(csvfile, delimiter=',')
    for i, row in enumerate(readCSV):
        preprocessed = gensim.utils.simple_preprocess(str(row))
