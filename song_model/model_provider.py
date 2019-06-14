@@ -19,4 +19,7 @@ songs = []
 # load model
 model = gensim.models.Word2Vec.load("songs_size400_window4_mincount2.model")
 
+# save model
+# model.save("songs_size400_window4_mincount2.model")
+
 print(model.wv.most_similar(positive=["depressed", "bad"]))
