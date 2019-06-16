@@ -1,4 +1,4 @@
-Model was created with data set of about 55000
+Model was created with data set of about 55000 and Word2Vec
 
 Most significant parameters for the trained model are:
 
@@ -22,3 +22,8 @@ for word sets:
 The result is similar to what we expected, because what we expect is only feelings as input, we don't need too dimensions for word vectors.
 Also we use songs as sentence in this algorithm so we want a greater window.
 Minimal count was set to 3 to ignore words with very little frequency.
+
+Songs are chosen by counting appearances of words given and similar contex words (which we get from the model) in our data.
+
+
+We are going to also try Word2Doc approach.
