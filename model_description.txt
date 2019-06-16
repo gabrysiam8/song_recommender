@@ -1,0 +1,24 @@
+Model was created with data set of about 55000
+
+Most significant parameters for the trained model are:
+
+size - Dimensionality of the word vectors.
+min_count - Ignores all words with total frequency lower than this.
+window - Maximum distance between the current and predicted word within a sentence.
+
+
+Models tried:
+a) size=400, window=4, min_count=2
+b) size=60, window=6, min_count=3
+c) size=130, window=6, min_count=3
+d) size=100, window=8, min_count=3
+e) size=90, window=11, min_count=3
+
+The best result gived us model with parameters (d)
+for word sets:
+    ["good", "nice", "well", "happy"]
+    ["depressed", "bad"]
+
+The result is similar to what we expected, because what we expect is only feelings as input, we don't need too dimensions for word vectors.
+Also we use songs as sentence in this algorithm so we want a greater window.
+Minimal count was set to 3 to ignore words with very little frequency.
