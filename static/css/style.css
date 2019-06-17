@@ -96,7 +96,7 @@ body {
 }
 
 .moods ul li {
-  border: 2px solid black;
+  border: 2px solid;
   border-radius: 30px;
   padding: 12px;
   height: 22px;
@@ -181,4 +181,14 @@ body {
   visibility: visible;
   transform: scale(1.0);
   transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.selected {
+  color: #ffffff;
+  border: #ffffff;
+}
+
+.unselected {
+  color: #ffffff;
+  border:black;
 }

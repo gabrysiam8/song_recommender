@@ -18,13 +18,7 @@ closeButton.addEventListener("click", toggleModal);
 window.addEventListener("click", windowOnClick);
 
 //changing color of chosen moods to white
-$("#list li").click(function() {
-    if ($(this).css("color") !== "white") {
-        ($(this).css("color", "white"));
-        ($(this).css("border", "solid 2px white"));
-        ($(this).css(":active"));
-    }
-});
+$("#list li").click(moodClicker);
 
 //adding elements to the list of words with search bar and changing
 //their color to white
@@ -36,6 +30,24 @@ function addChosenWords() {
     node.innerText = word;
     
     el.appendChild(node);
-    node.style.color = "white";
-    node.style.border = "solid 2px white";
+    node.className = "selected";
+    node.addEventListener('click', moodClicker)
+}
+
+function selectMood(mood) {
+    let moods = window.localStorage.moods
+    if (Array.isArray(moods)) {
+
+    } else {
+        moods = [mood]
+    }
+}
+
+$('.submit').click(function() {
+    let moods = $.find('.selected').map(el => el.textContent)
+    console.log(moods)    
+})
+
+function moodClicker() {
+    $(this).toggleClass("selected")
 }
