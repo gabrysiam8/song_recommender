@@ -2,6 +2,7 @@ from django.shortcuts import render
 from recommender.models import Mood
 import json
 from django.http import HttpResponse
+from .suggestions import find_song_suggestions
 
 
 def index(request):
@@ -23,5 +24,13 @@ def get_moods(request):
         data = json.dumps(results)
     else:
         data = 'fail'
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)
+
+
+def search_song(request):
+    moods = request.POST.getlist('moods[]')
+    matched_song = find_song_suggestions(moods)
+    data = json.dumps(matched_song)
     mimetype = 'application/json'
     return HttpResponse(data, mimetype)

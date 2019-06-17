@@ -6,13 +6,13 @@ from textblob import Word
 import operator
 
 
-def find_song_suggestions(*keywords):
-    model = gensim.models.Word2Vec.load("../song_model/songs_size400_window4_mincount2.model")
+def find_song_suggestions(keywords):
+    model = gensim.models.Word2Vec.load("song_model/songs_size400_window4_mincount2.model")
     keywords = list(keywords)
     most_similar_word = model.wv.most_similar(positive=keywords)[0][0]
     keywords.append(most_similar_word)
-    filepath = '../data/songdata.csv'
-    songs_df = pd.read_csv(filepath)
+    filepath = 'data/songdata.csv'
+    songs_df = pd.read_csv(filepath).head(1000)
     lyrics = songs_df.loc[:, 'text']
 
     # clear song text
@@ -34,6 +34,4 @@ def find_song_suggestions(*keywords):
 
     song_id = max(occurrences.items(), key=operator.itemgetter(1))[0]
 
-    print(songs_df.loc[song_id, 'text'])
-
-find_song_suggestions('depressed','sad')
+    return songs_df.loc[song_id, 'artist':'song'].to_dict()

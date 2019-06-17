@@ -79,7 +79,10 @@
               <li>{{ mood }}</li>
           {% endfor %}    
         </ul>
-        <a class="submit">Check your songs!</a>
+        <form action="/api/search_song" method="post">
+            {% csrf_token %}
+            <a class="submit">Check your songs!</a>
+        </form>
       </div>
     </div>
 

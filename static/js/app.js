@@ -45,7 +45,21 @@ function selectMood(mood) {
 
 $('.submit').click(function() {
     let moods = $.find('.selected').map(el => el.textContent)
-    console.log(moods)    
+    let csrftoken = $("[name=csrfmiddlewaretoken]").val();
+    console.log(moods)
+    $.ajax({
+      url: "/api/search_song",
+      type: "POST",
+      headers: {
+        "X-CSRFToken": csrftoken
+      },
+      data: {
+          "moods[]": moods
+      },
+      success:function() {
+        alert("Found song");
+      }
+    })
 })
 
 function moodClicker() {
