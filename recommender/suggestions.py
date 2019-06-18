@@ -1,37 +1,25 @@
 import gensim
-import pandas as pd
-import string
-from nltk.corpus import stopwords
-from textblob import Word
-import operator
+import csv
 
 
 def find_song_suggestions(keywords):
-    model = gensim.models.Word2Vec.load("song_model/songs_size400_window4_mincount2.model")
+    model = gensim.models.doc2vec.Doc2Vec.load("song_model/d2v_vectorsize50_window5_mincount2_epochs15")
     keywords = list(keywords)
-    most_similar_word = model.wv.most_similar(positive=keywords)[0][0]
-    keywords.append(most_similar_word)
-    filepath = 'data/songdata.csv'
-    songs_df = pd.read_csv(filepath)
-    lyrics = songs_df.loc[:, 'text']
+    artists = []
+    titles = []
+    with open('data/songdata.csv') as csvfile:
+        readCSV = csv.reader(csvfile, delimiter=',')
+        for i, row in enumerate(readCSV):
+            artists.append(row[0])
+            titles.append(row[1])
 
-    # clear song text
-    stop = stopwords.words('english')
-    lyrics = lyrics.apply(lambda x: ' '.join(x.lower() for x in x.split()))
-    lyrics = lyrics.apply(lambda x: ' '.join(x for x in x.split() if x not in string.punctuation))
-    lyrics = lyrics.str.replace('[^\w\s]', '')
-    lyrics = lyrics.apply(lambda x: ' '.join(x for x in x.split() if not x.isdigit()))
-    lyrics = lyrics.apply(lambda x: ' '.join(x for x in x.split() if not x in stop))
-    lyrics = lyrics.apply(lambda x: " ".join([Word(word).lemmatize() for word in x.split()]))
-    lyrics = lyrics.apply(lambda x: x.split())
+    inferred_vector = model.infer_vector(keywords)
+    indexes = model.docvecs.most_similar([inferred_vector], topn=len(model.docvecs)) # indexes of most similar songs are generated
+    best_index = indexes[0][0]
 
-    occurrences = {}
+    best_result = {}
+    best_result['artist'] = artists[best_index]
+    best_result['song'] = titles[best_index]
 
-    for i, l in lyrics.items():
-        occurrences[i] = 0
-        for k in keywords:
-            occurrences[i] += l.count(k)
+    return best_result
 
-    song_id = max(occurrences.items(), key=operator.itemgetter(1))[0]
-
-    return songs_df.loc[song_id, 'artist':'song'].to_dict()

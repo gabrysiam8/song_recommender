@@ -9,8 +9,8 @@ import gensim
 import random
 
 all_moods = []
-model = gensim.models.Word2Vec.load("song_model/songs_size400_window4_mincount2.model")
-word_vector = model.wv
+model = gensim.models.doc2vec.Doc2Vec.load("song_model/d2v_vectorsize50_window5_mincount2_epochs15")
+word_vector = model.wv.vocab.keys()
 
 
 def index(request):
@@ -19,7 +19,7 @@ def index(request):
         with open(filepath, 'r') as file:
             moods = [mood.strip() for mood in file.read().split(',')]
             for mood_name in moods:
-                if mood_name in word_vector.vocab:
+                if mood_name in word_vector:
                     mood = Mood()
                     mood.name = mood_name
                     mood.categories = categories
@@ -34,7 +34,7 @@ def get_moods(request):
         moods = list(filter(lambda x: x.name.startswith(q), all_moods))
         results = []
         for mood in moods:
-            if mood.name in word_vector.vocab:
+            if mood.name in word_vector:
                 mood_json = {}
                 mood_json['id'] = mood.id
                 mood_json['label'] = mood.name
