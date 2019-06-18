@@ -86,8 +86,8 @@
       </div>
     </div>
 
-    <div class="modal">
-      <div class="modal-content">
+    <div class="modal" id="description-modal">
+      <div id='desc-modal-close-button' class="modal-content">
           <span class="close-button">&times;</span>
           <h1>Song recommender</h1>
           <p>This app is a project for Python in the Enterprise university course. 
@@ -107,6 +107,14 @@
           </ul>
       </div>
   </div>
+
+  <div class="modal" id="song-modal">
+    <div class="modal-content">
+        <span id='song-modal-close-button' class="close-button">&times;</span>
+        <h1>Song recommender</h1>
+        
+    </div>
+</div>
 
     <script src="{% static 'js/app.js' %}" type="text/javascript"></script>
   </body>
