@@ -60,9 +60,11 @@ $('.submit').click(function() {
       data: {
           "moods[]": moods
       },
-      success:function() {
-        alert("Found song");
-        document.querySelector('#song-modal').classList.toggle("show-modal");
+      success:function(track) {
+       document.querySelector('#song-modal').classList.toggle("show-modal");
+       let song = document.createElement("h2");
+       song.innerText = `${track.song} - ${track.artist}`;
+       document.querySelector('#song-modal .modal-content').appendChild(song)
       }
     })
 
