@@ -50,7 +50,10 @@ def get_moods(request):
 
 def search_song(request):
     moods = request.POST.getlist('moods[]')
-    matched_song = find_song_suggestions(moods)
+    #matched_song = find_song_suggestions(moods)
+    matched_song = {}
+    matched_song['artist'] = 'sample author'
+    matched_song['song'] = 'sample title'
     data = json.dumps(matched_song)
     mimetype = 'application/json'
     return HttpResponse(data, mimetype)
