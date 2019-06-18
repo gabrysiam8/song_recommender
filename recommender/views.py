@@ -6,7 +6,7 @@ from .suggestions import find_song_suggestions
 from glob import glob
 import os
 import gensim
-import time
+import random
 
 all_moods = []
 model = gensim.models.Word2Vec.load("song_model/songs_size400_window4_mincount2.model")
@@ -24,7 +24,7 @@ def index(request):
                     mood.name = mood_name
                     mood.categories = categories
                     all_moods.append(mood)
-    mood_names = [m.name for m in all_moods[:50]]
+    mood_names = list(map(lambda x: x.name, random.sample(all_moods, 50)))
     return render(request, 'index.html', {'moods': mood_names})
 
 
@@ -49,11 +49,7 @@ def get_moods(request):
 
 def search_song(request):
     moods = request.POST.getlist('moods[]')
-    #matched_song = find_song_suggestions(moods)
-    matched_song = {}
-    matched_song['artist'] = 'sample author'
-    matched_song['song'] = 'sample title'
+    matched_song = find_song_suggestions(moods)
     data = json.dumps(matched_song)
-    time.sleep(10)
     mimetype = 'application/json'
     return HttpResponse(data, mimetype)

@@ -12,7 +12,7 @@ def find_song_suggestions(keywords):
     most_similar_word = model.wv.most_similar(positive=keywords)[0][0]
     keywords.append(most_similar_word)
     filepath = 'data/songdata.csv'
-    songs_df = pd.read_csv(filepath).head(1000)
+    songs_df = pd.read_csv(filepath)
     lyrics = songs_df.loc[:, 'text']
 
     # clear song text
