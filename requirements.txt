@@ -3,7 +3,7 @@ boto3==1.9.168
 botocore==1.12.168
 certifi==2019.3.9
 chardet==3.0.4
-Django==2.2.10
+Django==2.2.22
 docutils==0.14
 gensim==3.7.3
 idna==2.8
